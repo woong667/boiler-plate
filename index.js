@@ -1,9 +1,9 @@
 const express=require('express')
-const {User}=require('./models/User');
-const {auth}=require('./middleware/auth');
+const {User}=require('./server/models/User');
+const {auth}=require('./server/middleware/auth');
 const mongoose=require('mongoose');
 const bodyParser=require('body-parser');
-const config=require('./config/key'); 
+const config=require('./server/config/key'); 
 const cookieParser=require('cookie-parser');
 const app=express()
 const port=5000
@@ -93,4 +93,10 @@ app.get('/api/users/auth',auth,(req,res)=>{        // auth라는 미들웨어를
  
 
 app.get('/',(req,res)=>res.send('Hello world!'))
+
+app.get('/api/hello',(req,res)=>{
+    res.send("안녕!");
+})
+
+
 app.listen(port,()=>console.log(`Example app listening on${port}!`))
