@@ -5,14 +5,17 @@ function LandingPage() {
  
 
     useEffect(() => {   //LandingPage에 들어오자마자 바로 실행하는 함수.
-            axios.get('http://localhost:5000/api/hello')
+            axios.get('/api/hello')
             .then(response=>console.log(response.data))
     }, [])
   
 
     return (
-        <div>
-            LandingPage 랜딩페이지
+        <div style={{
+            display:'flex',justifyContent:'center',alignItems:'center',
+            width:'100%',height:'100vh'
+        }}>
+            <h2>시작페이지</h2>
         </div>
     )
 }

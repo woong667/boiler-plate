@@ -1,9 +1,9 @@
 const express=require('express')
-const {User}=require('./server/models/User');
-const {auth}=require('./server/middleware/auth');
+const {User}=require('./models/User');
+const {auth}=require('./middleware/auth');
 const mongoose=require('mongoose');
 const bodyParser=require('body-parser');
-const config=require('./server/config/key'); 
+const config=require('./config/key'); 
 const cookieParser=require('cookie-parser');
 const app=express()
 const port=5000
@@ -99,4 +99,4 @@ app.get('/api/hello',(req,res)=>{
 })
 
 
-app.listen(port,()=>console.log(`Example app listening on${port}!`))
+app.listen(port,()=>console.log(`Example app listening on ${port}!`))
