@@ -1,7 +1,8 @@
 import React,{useEffect} from 'react'
 import axios from 'axios'
+import {withRouter} from 'react-router-dom';
 
-function LandingPage() {
+function LandingPage(props) {
  
 
     useEffect(() => {   //LandingPage에 들어오자마자 바로 실행하는 함수.
@@ -10,14 +11,30 @@ function LandingPage() {
     }, [])
   
 
+    const onClickHandler=()=>{
+       axios.get(`/api/users/logout`).then(response=>{
+           if(response.data.success)
+           {
+               props.history.push("/login")
+           }
+           else{
+               alert("failed to logout")
+           }
+       })
+    }
     return (
         <div style={{
             display:'flex',justifyContent:'center',alignItems:'center',
             width:'100%',height:'100vh'
         }}>
             <h2>시작페이지</h2>
+        
+        <br></br>
+        <button onClick={onClickHandler}>
+             로그아웃
+        </button>
         </div>
     )
 }
 
-export default LandingPage
+export default withRouter(LandingPage);

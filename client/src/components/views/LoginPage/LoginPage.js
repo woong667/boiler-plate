@@ -1,8 +1,9 @@
 import React,{useState} from 'react'
 import {useDispatch} from 'react-redux'
 import {loginUser} from '../../../_actions/user_action';
+import {withRouter} from 'react-router-dom'
 
-function LoginPage() {
+function LoginPage(props) {
      
     const dispatch=useDispatch();
     const [Email,setEmail]=useState("")
@@ -23,7 +24,14 @@ function LoginPage() {
         }
 
         //이제 여기까지 입력받은 이메일과 password를 Axios를 것을 이용해서 서버로 보내야함
-        dispatch(loginUser(body))
+        dispatch(loginUser(body)).then(response=>{
+            if(response.payload.loginSuccess){
+                props.history.push('/');
+            }
+            else{
+                alert('Error');
+            }
+        })
     }
     return (
         <div style={{
@@ -45,4 +53,4 @@ function LoginPage() {
     )
 }
 
-export default LoginPage
+export default withRouter(LoginPage);
